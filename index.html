@@ -109,6 +109,8 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="featured-businesses.html">Businesses</a></li>
           <li><a href="#cta">Company Profile</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -801,6 +803,10 @@
 
         </div>
 
+        <div class="text-center portfolio-more" data-aos="fade-up" data-aos-delay="300">
+          <a href="projects.html" class="portfolio-more-btn">View More <i class="bi bi-arrow-right"></i></a>
+        </div>
+
       </div>
 
     </section><!-- /Portfolio Section -->
@@ -816,7 +822,7 @@
             <div class="cta-content text-center" data-aos="fade-up" data-aos-delay="100">
               <h3>Ready to Elevate Your Brand?</h3>
               <p>Discover how Growhive Media can transform your digital presence.</p>
-              <a class="cta-btn" href="assets/Company-Profile/company-profile.pdf" target="_blank" data-aos="zoom-in" data-aos-delay="200"><i class="bi bi-file-earmark-pdf me-2"></i>Download Company Profile</a>
+              <a class="cta-btn" href="https://drive.google.com/file/d/1KTu6lvuJTYFgnPHp7MvmVEybk7Wf9zGf/view?usp=sharing" target="_blank" rel="noopener" data-aos="zoom-in" data-aos-delay="200"><i class="bi bi-file-earmark-pdf me-2"></i>Download Company Profile</a>
             </div>
           </div>
         </div>
@@ -916,6 +922,7 @@
             <p><strong>Email:</strong> <a href="mailto:info@growhivemedea.com">info@growhivemedea.com</a></p>
           </div>
           <div class="social-links d-flex mt-4">
+            <a href="https://wa.me/260978891454" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
             <span><i class="bi bi-twitter-x"></i></span>
             <span><i class="bi bi-facebook"></i></span>
             <span><i class="bi bi-instagram"></i></span>
@@ -929,6 +936,8 @@
             <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#services">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="news.html">News</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="featured-businesses.html">Businesses</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="terms-of-service.html">Terms of service</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="privacy-policy.html">Privacy policy</a></li>
           </ul>
@@ -945,12 +954,20 @@
         </div>
 
         <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>WhatsApp Us</h4>
-          <p>Ready to start your next project? Chat with us directly on WhatsApp!</p>
-          <div class="newsletter-form">
-            <input type="text" placeholder="Start a conversation..." readonly>
-            <a href="https://wa.me/260978891454" target="_blank">WhatsApp</a>
-          </div>
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to get updates on projects, tips, and company news.</p>
+          <form class="brevo-compact" action="https://98db9df3.sibforms.com/serve/MUIFANVDDByAdRU5SLo23x6mXJt25mznffIKlop2ppJrPlz12D6v3xYgIEdHbIBJhUKw3oyzD9vVDbJJDHAN1CjjGDQVTRcjRmiwaBCCA1Ub9wGwNVa6pDIWLhIQjoHSH3y_-TXEM_2yOfkb7bhrp0VYMyj5vpi72dvCFF45dGVw6Ak0RTGzFw52N9WuxzulftDfHs8MThUL9k1BsA==" method="POST">
+            <div class="newsletter-form">
+              <input type="email" name="EMAIL" placeholder="Enter your email" required autocomplete="email">
+              <input type="submit" value="Subscribe">
+            </div>
+            <label class="brevo-optin">
+              <input type="checkbox" name="OPT_IN" value="1" required>
+              <span>I agree to receive newsletters and accept the <a href="privacy-policy.html">privacy policy</a>.</span>
+            </label>
+            <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" class="brevo-honeypot" aria-hidden="true">
+            <input type="hidden" name="locale" value="en">
+          </form>
         </div>
 
       </div>
@@ -986,6 +1003,18 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function (user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function () {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 
 </body>
 

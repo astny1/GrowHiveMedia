@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Portfolio Details - Dewi Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>News - GrowHive Media</title>
+  <meta name="description" content="Latest news from GrowHive Media — partnerships, new clients, and company milestones.">
+  <meta name="keywords" content="GrowHive Media News, Partnerships, Clients, Milestones, Digital Agency Zambia">
+
+  <link rel="canonical" href="https://growhivemedea.com/news.html">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -26,17 +28,9 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Dewi
-  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body class="portfolio-details-page">
+<body class="news-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -51,6 +45,8 @@
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="news.html" class="active">News</a></li>
+          <li><a href="featured-businesses.html">Businesses</a></li>
           <li><a href="index.html#cta">Company Profile</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -67,82 +63,32 @@
     <!-- Page Title -->
     <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.webp);">
       <div class="container position-relative">
-        <h1>Portfolio Details</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <h1>News</h1>
+        <p>Partnerships, new clients, and milestones from GrowHive Media</p>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">Portfolio Details</li>
+            <li class="current">News</li>
           </ol>
         </nav>
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section">
+    <!-- News Section — managed via /admin (Netlify CMS) -->
+    <section id="news" class="news section">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container" data-aos="fade-up">
 
-        <div class="row gy-4">
-
-          <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper init-swiper">
-
-              <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": {
-                    "delay": 5000
-                  },
-                  "slidesPerView": "auto",
-                  "pagination": {
-                    "el": ".swiper-pagination",
-                    "type": "bullets",
-                    "clickable": true
-                  }
-                }
-              </script>
-
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/app-1.jpg" alt="">
-                </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/app-1.jpg" alt="">
-                </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/app-1.jpg" alt="">
-                </div>
-
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
+        <div class="news-list" data-news-list>
+          <div class="news-empty">
+            <i class="bi bi-newspaper"></i>
+            <h3>Loading news...</h3>
           </div>
-
-          <div class="col-lg-4">
-            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Marketing Materials & QR Code Landing Pages</li>
-                <li><strong>Client</strong>: The Copperbelt Mining Agriculture and Commercial Show Society</li>
-                <li><strong>Project URL</strong>: <a href="https://astny1.github.io/Caminexlandinpage/" target="_blank" rel="noopener">Click here</a></li>
-              </ul>
-            </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Marketing Materials & QR Code Landing Pages</h2>
-              <p>
-                We created comprehensive marketing materials, professional graphics, and custom QR Code landing pages to boost event promotion and audience engagement, ensuring visually consistent assets while integrating QR technology for seamless digital interaction.
-              </p>
-            </div>
-          </div>
-
         </div>
 
       </div>
 
-    </section><!-- /Portfolio Details Section -->
+    </section><!-- /News Section -->
 
   </main>
 
@@ -174,6 +120,8 @@
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#hero">Home</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">About us</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#services">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="news.html">News</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="featured-businesses.html">Businesses</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="terms-of-service.html">Terms of service</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="privacy-policy.html">Privacy policy</a></li>
           </ul>
@@ -239,6 +187,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/content-loader.js"></script>
 </body>
 
 </html>

@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Portfolio Details - Dewi Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Projects - GrowHive Media</title>
+  <meta name="description" content="Explore more projects from GrowHive Media — websites, branding, marketing, and digital solutions we have delivered.">
+  <meta name="keywords" content="GrowHive Media Projects, Portfolio, Web Design Zambia, Branding, Digital Marketing">
+
+  <link rel="canonical" href="https://growhivemedea.com/projects.html">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -26,17 +28,9 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Dewi
-  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body class="portfolio-details-page">
+<body class="projects-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -50,7 +44,9 @@
           <li><a href="index.html#hero">Home</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="index.html#portfolio" class="active">Portfolio</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="featured-businesses.html">Businesses</a></li>
           <li><a href="index.html#cta">Company Profile</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -67,74 +63,46 @@
     <!-- Page Title -->
     <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.webp);">
       <div class="container position-relative">
-        <h1>Portfolio Details</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <h1>Our Projects</h1>
+        <p>More of the work we have delivered for clients</p>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">Portfolio Details</li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li class="current">Projects</li>
           </ol>
         </nav>
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section">
+    <!-- Projects Section -->
+    <!-- To add a project: copy one .project-item block and update category, title, description, and image -->
+    <section id="projects" class="projects section">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-4 project-grid">
 
-          <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper init-swiper">
-
-              <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": {
-                    "delay": 5000
-                  },
-                  "slidesPerView": "auto",
-                  "pagination": {
-                    "el": ".swiper-pagination",
-                    "type": "bullets",
-                    "clickable": true
-                  }
-                }
-              </script>
-
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/app-1.jpg" alt="">
-                </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/app-1.jpg" alt="">
-                </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/app-1.jpg" alt="">
-                </div>
-
+          <!-- Example project — uncomment and edit when ready
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <article class="project-item">
+              <div class="project-img">
+                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Project name">
               </div>
-              <div class="swiper-pagination"></div>
-            </div>
+              <div class="project-body">
+                <span class="project-category">Web Solutions</span>
+                <h2>Project / Client Name</h2>
+                <p>Short description of the work delivered for this client.</p>
+              </div>
+            </article>
           </div>
+          -->
 
-          <div class="col-lg-4">
-            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Marketing Materials & QR Code Landing Pages</li>
-                <li><strong>Client</strong>: The Copperbelt Mining Agriculture and Commercial Show Society</li>
-                <li><strong>Project URL</strong>: <a href="https://astny1.github.io/Caminexlandinpage/" target="_blank" rel="noopener">Click here</a></li>
-              </ul>
-            </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Marketing Materials & QR Code Landing Pages</h2>
-              <p>
-                We created comprehensive marketing materials, professional graphics, and custom QR Code landing pages to boost event promotion and audience engagement, ensuring visually consistent assets while integrating QR technology for seamless digital interaction.
-              </p>
+          <div class="col-12" data-aos="fade-up">
+            <div class="project-empty">
+              <i class="bi bi-folder2-open"></i>
+              <h3>No new projects posted yet</h3>
+              <p>New client projects will appear here. <a href="index.html#portfolio">Back to portfolio</a></p>
             </div>
           </div>
 
@@ -142,7 +110,7 @@
 
       </div>
 
-    </section><!-- /Portfolio Details Section -->
+    </section><!-- /Projects Section -->
 
   </main>
 
@@ -174,6 +142,10 @@
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#hero">Home</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">About us</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#services">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#portfolio">Portfolio</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="projects.html">Projects</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="news.html">News</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="featured-businesses.html">Businesses</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="terms-of-service.html">Terms of service</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="privacy-policy.html">Privacy policy</a></li>
           </ul>
