@@ -250,6 +250,21 @@
               "</a>"
             : "";
 
+          var description = String(item.description || "").trim();
+          var brief = excerptText(description, 110);
+          var needsMore = description.length > brief.length;
+          var descHtml = needsMore
+            ? '<p class="project-desc">' +
+              '<span class="project-desc-brief">' +
+              escapeHtml(brief) +
+              "</span>" +
+              '<span class="project-desc-full">' +
+              escapeHtml(description) +
+              "</span>" +
+              '<button type="button" class="project-read-more">Read more</button>' +
+              "</p>"
+            : "<p>" + escapeHtml(description) + "</p>";
+
           return (
             '<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="' +
             delay +
@@ -263,19 +278,30 @@
             "<h2>" +
             escapeHtml(item.title) +
             "</h2>" +
-            "<p>" +
-            escapeHtml(item.description) +
-            "</p>" +
+            descHtml +
             linkHtml +
             "</div></article></div>"
           );
         })
         .join("");
+
+      bindProjectReadMore(grid);
     } catch (error) {
       grid.innerHTML =
         '<div class="col-12"><div class="project-empty"><h3>Unable to load projects</h3><p>Please try again later.</p></div></div>';
       console.error(error);
     }
+  }
+
+  function bindProjectReadMore(grid) {
+    grid.querySelectorAll(".project-read-more").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var desc = button.closest(".project-desc");
+        if (!desc) return;
+        var expanded = desc.classList.toggle("is-expanded");
+        button.textContent = expanded ? "Read less" : "Read more";
+      });
+    });
   }
 
   async function renderNewsDetail() {
