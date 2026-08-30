@@ -75,37 +75,18 @@
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Projects Section -->
-    <!-- To add a project: copy one .project-item block and update category, title, description, and image -->
+    <!-- Projects Section — managed via /admin -->
     <section id="projects" class="projects section">
 
       <div class="container">
 
-        <div class="row gy-4 project-grid">
-
-          <!-- Example project — uncomment and edit when ready
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <article class="project-item">
-              <div class="project-img">
-                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Project name">
-              </div>
-              <div class="project-body">
-                <span class="project-category">Web Solutions</span>
-                <h2>Project / Client Name</h2>
-                <p>Short description of the work delivered for this client.</p>
-              </div>
-            </article>
-          </div>
-          -->
-
-          <div class="col-12" data-aos="fade-up">
+        <div class="row gy-4 project-grid" data-project-grid>
+          <div class="col-12">
             <div class="project-empty">
               <i class="bi bi-folder2-open"></i>
-              <h3>No new projects posted yet</h3>
-              <p>New client projects will appear here. <a href="index.html#portfolio">Back to portfolio</a></p>
+              <h3>Loading projects...</h3>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -211,6 +192,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/content-loader.js"></script>
 </body>
 
 </html>

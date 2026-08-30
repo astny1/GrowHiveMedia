@@ -162,8 +162,67 @@
     }
   }
 
+  async function renderProjects() {
+    var grid = document.querySelector("[data-project-grid]");
+    if (!grid) return;
+
+    try {
+      var data = await fetchJson("data/projects.json");
+      var items = Array.isArray(data.items) ? data.items.slice() : [];
+
+      if (!items.length) {
+        grid.innerHTML =
+          '<div class="col-12" data-aos="fade-up">' +
+          '<div class="project-empty">' +
+          '<i class="bi bi-folder2-open"></i>' +
+          "<h3>No new projects posted yet</h3>" +
+          '<p>New client projects will appear here. <a href="index.html#portfolio">Back to portfolio</a></p>' +
+          "</div></div>";
+        return;
+      }
+
+      grid.innerHTML = items
+        .map(function (item, index) {
+          var delay = (index % 3) * 100 + 100;
+          var image = item.image ? String(item.image).trim() : "";
+          var imageHtml = image
+            ? '<div class="project-img"><img src="' +
+              escapeHtml(image) +
+              '" class="img-fluid" alt="' +
+              escapeHtml(item.title || "Project") +
+              '"></div>'
+            : "";
+
+          return (
+            '<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="' +
+            delay +
+            '">' +
+            '<article class="project-item">' +
+            imageHtml +
+            '<div class="project-body">' +
+            '<span class="project-category">' +
+            escapeHtml(item.category || "Project") +
+            "</span>" +
+            "<h2>" +
+            escapeHtml(item.title) +
+            "</h2>" +
+            "<p>" +
+            escapeHtml(item.description) +
+            "</p>" +
+            "</div></article></div>"
+          );
+        })
+        .join("");
+    } catch (error) {
+      grid.innerHTML =
+        '<div class="col-12"><div class="project-empty"><h3>Unable to load projects</h3><p>Please try again later.</p></div></div>';
+      console.error(error);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     renderNews();
     renderBusinesses();
+    renderProjects();
   });
 })();

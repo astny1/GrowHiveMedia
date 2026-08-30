@@ -2,38 +2,44 @@ backend:
   name: git-gateway
   branch: main
 
+local_backend: true
 publish_mode: simple
 
 media_folder: assets/img/uploads
 public_folder: /assets/img/uploads
 
 collections:
-  - name: content
-    label: Website Content
+  - name: news
+    label: News
     files:
       - file: data/news.json
         name: news
-        label: News Posts
+        label: News posts
         fields:
-          - label: News Items
+          - label: Posts
             name: items
             widget: list
+            add_to_top: true
             summary: "{{title}}"
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Date, name: date, widget: datetime, date_format: DD MMM YYYY, time_format: false }
               - { label: Content, name: body, widget: text }
 
+  - name: businesses
+    label: Businesses
+    files:
       - file: data/businesses.json
         name: businesses
-        label: Featured Businesses
+        label: Featured businesses
         fields:
           - label: Businesses
             name: items
             widget: list
+            add_to_top: true
             summary: "{{name}}"
             fields:
-              - { label: Business Name, name: name, widget: string }
+              - { label: Business name, name: name, widget: string }
               - { label: Category, name: category, widget: string, hint: "e.g. Retail, Mining, Construction" }
               - { label: Location, name: location, widget: string, default: "Kitwe, Zambia" }
               - { label: Description, name: description, widget: text }
@@ -51,3 +57,21 @@ collections:
                   - { label: Truck, value: truck }
                   - { label: Laptop, value: laptop }
                   - { label: People, value: people }
+
+  - name: projects
+    label: Projects
+    files:
+      - file: data/projects.json
+        name: projects
+        label: Project posts
+        fields:
+          - label: Projects
+            name: items
+            widget: list
+            add_to_top: true
+            summary: "{{title}}"
+            fields:
+              - { label: Project / client name, name: title, widget: string }
+              - { label: Category, name: category, widget: string, hint: "e.g. Web Solutions, Branding, Video" }
+              - { label: Description, name: description, widget: text }
+              - { label: Image, name: image, widget: image, required: false }
