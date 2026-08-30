@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "title": "MUCHINGA YOUTH SUMMIT REGISTRATION WEBSITE",
+      "category": "Web Solution",
+      "description": "We designed and deployed a comprehensive event registration website for the Ubuntu Youth Network, featuring an integrated admin panel that streamlines participant management. The custom-built system enables the organization to seamlessly register attendees, review and approve submissions, and automatically trigger confirmation emails upon approval, ensuring a smooth and automated workflow for summit and masterclass programs.",
+      "image": "/assets/img/uploads/screenshot-2026-08-30-212047.png",
+      "website": "https://1muchingayouthsummit.pythonanywhere.com/"
+    },
+    {
       "website": "https://vongacapital.com/",
       "image": "/assets/img/uploads/screenshot-2026-08-30-204233.png",
       "title": "WEBSITE DEVELOPMENT & CONTACT PAGE CONFIGUARATION",
