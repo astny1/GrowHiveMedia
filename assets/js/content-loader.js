@@ -68,7 +68,19 @@
     return excerptText(item && item.details, 160);
   }
 
-  function iconClass(icon) {
+  function newsImageHtml(item, wrapClass) {
+    var image = item && item.image ? String(item.image).trim() : "";
+    if (!image) return "";
+    return (
+      '<div class="' +
+      wrapClass +
+      '"><img src="' +
+      escapeHtml(image) +
+      '" alt="' +
+      escapeHtml((item && item.title) || "News") +
+      '"></div>'
+    );
+  }
     var allowed = {
       shop: "bi-shop",
       building: "bi-building",
@@ -114,10 +126,12 @@
         .map(function (item) {
           var href = "news-details.html?item=" + encodeURIComponent(newsSlug(item));
           return (
-            '<article class="news-item" data-aos="fade-up">' +
+            '<article class="news-item news-card" data-aos="fade-up">' +
             '<a class="news-item-link" href="' +
             href +
             '">' +
+            newsImageHtml(item, "news-card-img") +
+            '<div class="news-card-body">' +
             '<div class="news-meta">' +
             '<span class="news-badge"><i class="bi bi-newspaper"></i> News</span>' +
             '<time datetime="' +
@@ -133,7 +147,7 @@
             escapeHtml(newsBriefText(item)) +
             "</p>" +
             '<span class="news-read-more">Read full story <i class="bi bi-arrow-right"></i></span>' +
-            "</a></article>"
+            "</div></a></article>"
           );
         })
         .join("");
@@ -334,6 +348,8 @@
       document.title = (item.title || "News") + " - GrowHive Media";
 
       article.innerHTML =
+        newsImageHtml(item, "news-detail-img") +
+        '<div class="news-detail-content">' +
         '<div class="news-meta">' +
         '<span class="news-badge"><i class="bi bi-newspaper"></i> News</span>' +
         '<time datetime="' +
@@ -348,7 +364,8 @@
         '<div class="news-detail-body">' +
         formatBodyHtml(newsFullText(item)) +
         "</div>" +
-        '<a class="news-back-link" href="news.html"><i class="bi bi-arrow-left"></i> Back to news</a>';
+        '<a class="news-back-link" href="news.html"><i class="bi bi-arrow-left"></i> Back to news</a>' +
+        "</div>";
     } catch (error) {
       article.innerHTML =
         '<div class="news-empty"><h3>Unable to load this story</h3><p><a href="news.html">Back to news</a></p></div>';

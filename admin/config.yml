@@ -24,6 +24,7 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Date, name: date, widget: datetime, date_format: DD MMM YYYY, time_format: false }
+              - { label: Image, name: image, widget: image, required: false, hint: "Optional photo shown on the news card and full story" }
               - { label: Brief, name: body, widget: text, hint: "Short preview shown on the News page" }
               - { label: Full story, name: details, widget: text, required: false, hint: "Optional. If empty, the brief is shown as the full story." }
 
