@@ -28,6 +28,46 @@
       .replace(/'/g, "&#39;");
   }
 
+  function newsSlug(item) {
+    if (item && item.slug) {
+      return String(item.slug).toLowerCase().replace(/[^a-z0-9-]+/g, "-");
+    }
+    var base = String((item && item.title) || "news")
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    var datePart = toDateTimeAttr(item && item.date);
+    return datePart ? base + "-" + datePart : base || "news";
+  }
+
+  function excerptText(text, limit) {
+    var value = String(text || "").replace(/\s+/g, " ").trim();
+    if (value.length <= limit) return value;
+    return value.slice(0, limit).replace(/\s+\S*$/, "") + "...";
+  }
+
+  function formatBodyHtml(text) {
+    var value = String(text || "").trim();
+    if (!value) return "<p></p>";
+    return value
+      .split(/\n{2,}/)
+      .map(function (paragraph) {
+        return "<p>" + escapeHtml(paragraph).replace(/\n/g, "<br>") + "</p>";
+      })
+      .join("");
+  }
+
+  function newsFullText(item) {
+    return (item && (item.details || item.body)) || "";
+  }
+
+  function newsBriefText(item) {
+    if (item && item.summary) return item.summary;
+    if (item && item.body) return excerptText(item.body, 160);
+    return excerptText(item && item.details, 160);
+  }
+
   function iconClass(icon) {
     var allowed = {
       shop: "bi-shop",
@@ -72,8 +112,12 @@
 
       list.innerHTML = items
         .map(function (item) {
+          var href = "news-details.html?item=" + encodeURIComponent(newsSlug(item));
           return (
             '<article class="news-item" data-aos="fade-up">' +
+            '<a class="news-item-link" href="' +
+            href +
+            '">' +
             '<div class="news-meta">' +
             '<span class="news-badge"><i class="bi bi-newspaper"></i> News</span>' +
             '<time datetime="' +
@@ -86,9 +130,10 @@
             escapeHtml(item.title) +
             "</h2>" +
             "<p>" +
-            escapeHtml(item.body) +
+            escapeHtml(newsBriefText(item)) +
             "</p>" +
-            "</article>"
+            '<span class="news-read-more">Read full story <i class="bi bi-arrow-right"></i></span>' +
+            "</a></article>"
           );
         })
         .join("");
@@ -193,6 +238,18 @@
               '"></div>'
             : "";
 
+          var website = item.website ? String(item.website).trim() : "";
+          if (website && !/^https?:\/\//i.test(website)) {
+            website = "https://" + website;
+          }
+          var linkHtml = website
+            ? '<a class="project-live-link" href="' +
+              escapeHtml(website) +
+              '" target="_blank" rel="noopener">' +
+              '<span class="live-dot" aria-hidden="true"></span> Click here' +
+              "</a>"
+            : "";
+
           return (
             '<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="' +
             delay +
@@ -209,6 +266,7 @@
             "<p>" +
             escapeHtml(item.description) +
             "</p>" +
+            linkHtml +
             "</div></article></div>"
           );
         })
@@ -220,8 +278,61 @@
     }
   }
 
+  async function renderNewsDetail() {
+    var article = document.querySelector("[data-news-detail]");
+    if (!article) return;
+
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get("item") || "";
+
+    try {
+      var data = await fetchJson("data/news.json");
+      var items = Array.isArray(data.items) ? data.items.slice() : [];
+      var item = items.find(function (entry) {
+        return newsSlug(entry) === slug;
+      });
+
+      if (!item) {
+        article.innerHTML =
+          '<div class="news-empty">' +
+          "<h3>News story not found</h3>" +
+          '<p><a href="news.html">Back to news</a></p>' +
+          "</div>";
+        return;
+      }
+
+      var titleEl = document.querySelector("[data-news-page-title]");
+      var crumbEl = document.querySelector("[data-news-crumb]");
+      if (titleEl) titleEl.textContent = item.title || "News";
+      if (crumbEl) crumbEl.textContent = item.title || "News";
+      document.title = (item.title || "News") + " - GrowHive Media";
+
+      article.innerHTML =
+        '<div class="news-meta">' +
+        '<span class="news-badge"><i class="bi bi-newspaper"></i> News</span>' +
+        '<time datetime="' +
+        escapeHtml(toDateTimeAttr(item.date)) +
+        '">' +
+        escapeHtml(formatDate(item.date)) +
+        "</time>" +
+        "</div>" +
+        "<h2>" +
+        escapeHtml(item.title) +
+        "</h2>" +
+        '<div class="news-detail-body">' +
+        formatBodyHtml(newsFullText(item)) +
+        "</div>" +
+        '<a class="news-back-link" href="news.html"><i class="bi bi-arrow-left"></i> Back to news</a>';
+    } catch (error) {
+      article.innerHTML =
+        '<div class="news-empty"><h3>Unable to load this story</h3><p><a href="news.html">Back to news</a></p></div>';
+      console.error(error);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     renderNews();
+    renderNewsDetail();
     renderBusinesses();
     renderProjects();
   });

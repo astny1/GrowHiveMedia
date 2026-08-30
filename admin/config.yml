@@ -24,7 +24,8 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Date, name: date, widget: datetime, date_format: DD MMM YYYY, time_format: false }
-              - { label: Content, name: body, widget: text }
+              - { label: Brief, name: body, widget: text, hint: "Short preview shown on the News page" }
+              - { label: Full story, name: details, widget: text, required: false, hint: "Optional. If empty, the brief is shown as the full story." }
 
   - name: businesses
     label: Businesses
@@ -74,4 +75,5 @@ collections:
               - { label: Project / client name, name: title, widget: string }
               - { label: Category, name: category, widget: string, hint: "e.g. Web Solutions, Branding, Video" }
               - { label: Description, name: description, widget: text }
+              - { label: Project link, name: website, widget: string, required: false, hint: "Paste the live project URL, e.g. https://example.com" }
               - { label: Image, name: image, widget: image, required: false }
