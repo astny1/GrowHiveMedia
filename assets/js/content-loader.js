@@ -63,9 +63,9 @@
   }
 
   function newsBriefText(item) {
-    if (item && item.summary) return item.summary;
-    if (item && item.body) return excerptText(item.body, 160);
-    return excerptText(item && item.details, 160);
+    if (item && item.summary) return excerptText(item.summary, 90);
+    if (item && item.body) return excerptText(item.body, 90);
+    return excerptText(item && item.details, 90);
   }
 
   function newsImageHtml(item, wrapClass) {
@@ -82,7 +82,18 @@
     );
   }
 
-  function iconClass(icon) {
+  function liveLinkHtml(url) {
+    var website = url ? String(url).trim() : "";
+    if (!website) return "";
+    if (!/^https?:\/\//i.test(website)) website = "https://" + website;
+    return (
+      '<a class="news-live-link" href="' +
+      escapeHtml(website) +
+      '" target="_blank" rel="noopener">' +
+      '<span class="live-dot" aria-hidden="true"></span> Click here' +
+      "</a>"
+    );
+  }
     var allowed = {
       shop: "bi-shop",
       building: "bi-building",
@@ -127,40 +138,65 @@
         return;
       }
 
-      list.innerHTML = items
-        .map(function (item) {
-          var href = "news-details.html?item=" + encodeURIComponent(newsSlug(item));
-          return (
-            '<article class="news-item news-card" data-aos="fade-up">' +
-            '<a class="news-item-link" href="' +
-            href +
-            '">' +
-            newsImageHtml(item, "news-card-img") +
-            '<div class="news-card-body">' +
-            '<div class="news-meta">' +
-            '<span class="news-badge"><i class="bi bi-newspaper"></i> News</span>' +
-            '<time datetime="' +
-            escapeHtml(toDateTimeAttr(item.date)) +
-            '">' +
-            escapeHtml(formatDate(item.date)) +
-            "</time>" +
-            "</div>" +
-            "<h2>" +
-            escapeHtml(item.title) +
-            "</h2>" +
-            "<p>" +
-            escapeHtml(newsBriefText(item)) +
-            "</p>" +
-            '<span class="news-read-more">Read full story <i class="bi bi-arrow-right"></i></span>' +
-            "</div></a></article>"
-          );
-        })
-        .join("");
+      list.innerHTML =
+        '<div class="row gy-4">' +
+        items
+          .map(function (item) {
+            return (
+              '<div class="col-md-6 news-card-col">' +
+              '<article class="news-item news-card">' +
+              newsImageHtml(item, "news-card-img") +
+              '<div class="news-card-body">' +
+              '<div class="news-meta">' +
+              '<span class="news-badge"><i class="bi bi-newspaper"></i> News</span>' +
+              '<time datetime="' +
+              escapeHtml(toDateTimeAttr(item.date)) +
+              '">' +
+              escapeHtml(formatDate(item.date)) +
+              "</time>" +
+              "</div>" +
+              "<h2>" +
+              escapeHtml(item.title) +
+              "</h2>" +
+              '<p class="news-card-brief">' +
+              escapeHtml(newsBriefText(item)) +
+              "</p>" +
+              '<div class="news-card-full">' +
+              formatBodyHtml(newsFullText(item)) +
+              "</div>" +
+              liveLinkHtml(item.link) +
+              '<button type="button" class="news-read-more">Read full story <i class="bi bi-chevron-down"></i></button>' +
+              "</div></article></div>"
+            );
+          })
+          .join("") +
+        "</div>";
+
+      bindNewsExpand(list);
     } catch (error) {
       list.innerHTML =
         '<div class="news-empty"><h3>Unable to load news</h3><p>Please try again later.</p></div>';
       console.error(error);
     }
+  }
+
+  function bindNewsExpand(list) {
+    list.querySelectorAll(".news-read-more").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var col = button.closest(".news-card-col");
+        var card = button.closest(".news-card");
+        if (!card) return;
+        var expanded = card.classList.toggle("is-expanded");
+        if (col) col.classList.toggle("col-md-6", !expanded);
+        if (col) col.classList.toggle("col-12", expanded);
+        button.innerHTML = expanded
+          ? 'Show less <i class="bi bi-chevron-up"></i>'
+          : 'Read full story <i class="bi bi-chevron-down"></i>';
+        if (expanded) {
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
   }
 
   async function renderBusinesses() {
@@ -369,6 +405,7 @@
         '<div class="news-detail-body">' +
         formatBodyHtml(newsFullText(item)) +
         "</div>" +
+        liveLinkHtml(item.link) +
         '<a class="news-back-link" href="news.html"><i class="bi bi-arrow-left"></i> Back to news</a>' +
         "</div>";
     } catch (error) {
