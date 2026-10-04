@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "title": "Milika Tembo Academic & Social Research Portfolio",
+      "category": " Academic & Social Research Portfolio",
+      "description": "Designed and developed a sleek, modern web portfolio for researcher Milika Tembo to showcase her publication history, ongoing research initiatives, and academic contributions. The platform features an intuitive layout that organizes complex publications into easily navigable categories, highlights research impacts, and provides a seamless contact channel for academic collaboration and speaking engagements.",
+      "website": "https://www.milikatembo.com/",
+      "image": "/assets/img/uploads/screenshot-2026-10-04-113632.png"
+    },
+    {
       "title": "MUCHINGA YOUTH SUMMIT REGISTRATION WEBSITE",
       "category": "Web Solution",
       "description": "We designed and deployed a comprehensive event registration website for the Ubuntu Youth Network, featuring an integrated admin panel that streamlines participant management. The custom-built system enables the organization to seamlessly register attendees, review and approve submissions, and automatically trigger confirmation emails upon approval, ensuring a smooth and automated workflow for summit and masterclass programs.",
