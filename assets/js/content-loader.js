@@ -94,6 +94,8 @@
       "</a>"
     );
   }
+
+  function iconClass(icon) {
     var allowed = {
       shop: "bi-shop",
       building: "bi-building",
