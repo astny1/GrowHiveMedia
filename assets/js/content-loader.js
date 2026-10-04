@@ -81,6 +81,8 @@
       '"></div>'
     );
   }
+
+  function iconClass(icon) {
     var allowed = {
       shop: "bi-shop",
       building: "bi-building",
@@ -95,9 +97,12 @@
   }
 
   async function fetchJson(path) {
-    var response = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
+    var url = path.charAt(0) === "/" ? path : "/" + path;
+    var response = await fetch(url + "?t=" + Date.now(), { cache: "no-store" });
     if (!response.ok) throw new Error("Could not load " + path);
-    return response.json();
+    var data = await response.json();
+    if (Array.isArray(data)) return { items: data };
+    return data;
   }
 
   async function renderNews() {
